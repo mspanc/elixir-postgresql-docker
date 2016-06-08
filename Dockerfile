@@ -1,5 +1,8 @@
 FROM elixir:1.2.5
 ENV LANG=en_US.UTF-8
+ENV LANGUAGE=en_US.UTF-8
+ENV LC_ALL=en_US.UTF-8
+ENV LC_TYPE=en_US.UTF-8
 RUN apt-get update && \
   echo "LANGUAGE = en_US.UTF-8" > /etc/environment && \
   echo "LC_ALL = en_US.UTF-8" >> /etc/environment && \
