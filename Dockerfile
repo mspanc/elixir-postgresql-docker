@@ -1,6 +1,10 @@
 FROM elixir:1.2.5
 ENV LANG=en_US.UTF-8
 RUN apt-get update && \
+  echo "LANGUAGE = en_US.UTF-8" > /etc/environment && \
+  echo "LC_ALL = en_US.UTF-8" >> /etc/environment && \
+  echo "LANG = en_US.UTF-8" >> /etc/environment && \
+  echo "LC_TYPE = en_US.UTF-8" >> /etc/environment && \
   apt-get install postgresql postgresql-contrib locales -y && \
   /usr/sbin/locale-gen C.UTF-8 en_US.UTF-8 && \
   /usr/sbin/dpkg-reconfigure -f noninteractive locales && \
