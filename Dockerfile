@@ -1,8 +1,9 @@
 FROM elixir:1.2.5
-ENV LANG=C.UTF-8
+ENV LANG=en_US.UTF-8
 RUN apt-get update && \
   apt-get install postgresql postgresql-contrib locales -y && \
-  /usr/sbin/locale-gen C.UTF-8 && \
+  /usr/sbin/locale-gen C.UTF-8 en_US.UTF-8 && \
   /usr/sbin/dpkg-reconfigure -f noninteractive locales && \
-  echo -e "local\tall\tall\t\ttrust\nhost\tall\tall\t127.0.0.1/32\ttrust\nhost\tall\tall\t::1/128\ttrust\n" > /etc/postgresql/9.4/main/pg_hba.conf
-
+  echo "local all all              trust" > /etc/postgresql/9.4/main/pg_hba.conf && \
+  echo "host  all all 127.0.0.1/32 trust" >> /etc/postgresql/9.4/main/pg_hba.conf && \
+  echo "host  all all ::1/128      trust" >> /etc/postgresql/9.4/main/pg_hba.conf
